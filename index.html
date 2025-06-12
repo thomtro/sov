@@ -4,20 +4,7 @@
     
     <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-<script>
-let wakeLock = null;
 
-async function requestWakeLock() {
-    try {
-        wakeLock = await navigator.wakeLock.request('screen');
-        console.log('Wake Lock activated!');
-    } catch (err) {
-        console.error(`${err.name}, ${err.message}`);
-    }
-}
-
-
-</script>
     <script>
         
         
@@ -80,7 +67,6 @@ async function requestWakeLock() {
         }
 
         function start() {
-            requestWakeLock();
             if (!running) {
                 running = true;
                 play();
