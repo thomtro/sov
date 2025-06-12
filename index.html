@@ -68,19 +68,13 @@
 
         function start() {
             
-let wakelock;
-async function lockWakeState() {
-  if(!canWakeLock()) return;
-  try {
-    wakelock = await navigator.wakeLock.request();
-    wakelock.addEventListener('release', () => {
-      console.log('Screen Wake State Locked:', !wakelock.released);
-    });
-    console.log('Screen Wake State Locked:', !wakelock.released);
-  } catch(e) {
-    console.error('Failed to lock wake state with reason:', e.message);
-  }
-}
+        let screenLock;
+
+        try {
+          screenLock = await navigator.wakeLock.request('screen');
+        } catch (err) {
+          console.log('Error with wake lock: ', err);
+        }
 
             if (!running) {
                 running = true;
@@ -89,6 +83,7 @@ async function lockWakeState() {
         }
 
         function stop() {
+            await screenLock.release()
             running = false;
         }
     </script>
