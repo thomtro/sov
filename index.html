@@ -102,7 +102,7 @@ var sleep = {
         async function play() {
             if (!running) return;
             await MyFunction(); // Wait for MyFunction to complete
-
+            sleep.prevent();
             // Wait for the next animation frame
             await new Promise(resolve => requestAnimationFrame(resolve));
 
@@ -115,7 +115,6 @@ var sleep = {
         }
 
         function start() {
-            sleep.prevent();
             if (!running) {
                 running = true;
                 play();
