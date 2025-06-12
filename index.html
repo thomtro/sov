@@ -45,7 +45,11 @@
         function play() {
             if (!running) return;
             MyFunction();
-            timeoutId = setTimeout(play, 3000);
+            setTimeout(() => {
+                if (running) {
+                    requestAnimationFrame(play);
+                }
+            }, 3000);
         }
 
         function start() {
