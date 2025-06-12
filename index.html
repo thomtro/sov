@@ -67,15 +67,6 @@
         }
 
         function start() {
-            
-        let screenLock;
-
-        try {
-          screenLock = await navigator.wakeLock.request('screen');
-        } catch (err) {
-          console.log('Error with wake lock: ', err);
-        }
-
             if (!running) {
                 running = true;
                 play();
@@ -83,7 +74,6 @@
         }
 
         function stop() {
-            await screenLock.release()
             running = false;
         }
     </script>
